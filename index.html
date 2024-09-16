@@ -19,23 +19,24 @@
 
 
         <!-- Botón para abrir el modal -->
-        <div class="d-flex justify-content-center my-4">
+        <section class="d-flex justify-content-center my-4">
             <button type="button" id="btnAddArt" class="btn btn-primary" data-bs-toggle="modal"
                 data-bs-target="#videojuegoModal"></button>
-        </div>
+        </section>
         <!-- Games Container -->
         <div id="game-container"></div>
 
         <!-- Modal para agregar productos-->
-        <div class="modal fade" id="videojuegoModal" tabindex="-1" aria-labelledby="videojuegoModal" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+        <section class="modal fade" id="videojuegoModal" tabindex="-1" aria-labelledby="videojuegoModal"
+            aria-hidden="true">
+            <section class="modal-dialog">
+                <section class="modal-content">
+                    <article class="modal-header">
                         <h5 class="modal-title" id="videojuegoModal">Agregar Artículo</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="controls-container">
+                    </article>
+                    <article class="modal-body">
+                        <article class="controls-container">
                             <input type="text" id="new-title" class="form-control my-2" placeholder="Título">
                             <input type="text" id="new-description" class="form-control my-2" placeholder="Descripción">
                             <input type="text" id="new-gender" class="form-control my-2" placeholder="Género o tipo">
@@ -43,19 +44,18 @@
                                 placeholder="Ej. PS5, Xbox, PC, Nintendo Switch">
                             <input type="text" id="new-src" class="form-control my-2" placeholder="URL de la Imagen">
                             <input type="text" id="new-price" class="form-control my-2" placeholder="Precio">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
+                        </article>
+                    </article>
+                    <section class="modal-footer">
                         <button type="button" class="btn btn-primary" id="add-btn">Agregar Artículo</button>
+                    </section>
+                </section>
+            </section>
+        </section>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-center my-4">
+        <section class="d-flex justify-content-center my-4">
             <button type="button" class="btn btn-danger" id="remove-btn"></button>
-        </div>
+        </section>
 
     </main>
 

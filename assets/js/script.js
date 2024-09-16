@@ -1,5 +1,5 @@
 // Crear un array para las opciones del menú
-const menuItems = ['Home', 'Projects', 'Contact'];
+const menuItems = ['Home', 'Games', 'Contact'];
 
 // Crear navbar y agregar clase
 const navbar = document.createElement('nav');

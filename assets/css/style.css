@@ -4,8 +4,41 @@
   box-sizing: border-box;
 }
 
+/* Estilos para el contenedor de la navbar */
 .nav-container {
-  background: #000;
+  background-color: #333;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilos para la lista de elementos del menú */
+.ul-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+/* Estilos para cada ítem del menú */
+.nav-items {
+  margin: 0 15px;
+}
+
+/* Estilos para los enlaces del menú */
+.nav-items a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  transition: color 0.3s, background-color 0.3s; /* Transición suave para cambios de color */
+}
+
+/* Efecto al pasar el cursor sobre los enlaces */
+.nav-items a:hover {
+  background-color: #555;
+  color: #fff;
+  border-radius: 5px;
 }
 
 .main-content {
@@ -15,11 +48,10 @@
 }
 
 /* Agregando estilo los contenedores de los artículos  */
-#game-container{
-width: 20vw;
-display: flex;
-gap: 10px;
-
+#game-container {
+  width: 20vw;
+  display: flex;
+  gap: 10px;
 }
 .game-item {
   border: 1px solid #ccc;
@@ -29,6 +61,6 @@ gap: 10px;
 }
 
 .game-item img {
-  width: 15vw; 
+  width: 15vw;
   height: 25vh;
 }
