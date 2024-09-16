@@ -7,3 +7,28 @@
 .nav-container {
   background: #000;
 }
+
+.main-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Agregando estilo los contenedores de los artículos  */
+#game-container{
+width: 20vw;
+display: flex;
+gap: 10px;
+
+}
+.game-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+.game-item img {
+  width: 15vw; 
+  height: 25vh;
+}
