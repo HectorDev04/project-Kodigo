@@ -64,3 +64,15 @@
   width: 15vw;
   height: 25vh;
 }
+
+/* Footer */
+.footer{
+  color: white;
+  text-align: center;
+  background-color: #333;
+  padding: 2em;
+}
+
+.footer h4{
+  font-size: 1.1em;
+}

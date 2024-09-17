@@ -189,3 +189,7 @@ document.getElementById('add-btn').addEventListener('click', function () {
     let modal = bootstrap.Modal.getInstance(document.getElementById('videojuegoModal'));
     modal.hide();
 });
+
+//footer
+const contenidoFooter = document.getElementById("footer");
+contenidoFooter.innerHTML = "<h4>Made by Hector Rodriguez and Hector Maldonado  - Copyright 2024</h4>"
