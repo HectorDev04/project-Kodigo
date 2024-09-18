@@ -10,6 +10,7 @@
   padding: 10px 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 /* Estilos para la lista de elementos del menú */
@@ -31,7 +32,7 @@
   text-decoration: none;
   font-weight: bold;
   padding: 5px 10px;
-  transition: color 0.3s, background-color 0.3s; /* Transición suave para cambios de color */
+  transition: color 0.3s, background-color 0.3s;
 }
 
 /* Efecto al pasar el cursor sobre los enlaces */
@@ -41,32 +42,46 @@
   border-radius: 5px;
 }
 
+/* Estilos para el contenido principal */
 .main-content {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
 }
 
-/* Agregando estilo los contenedores de los artículos  */
+.modal-content {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
+/* Estilos para el contenedor de los artículos */
 #game-container {
-  width: 20vw;
+  width: 65vw;
   display: flex;
-  gap: 10px;
-}
-.game-item {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px;
-  text-align: center;
+  gap: 20px;
+  justify-content: center;
 }
 
+/* Estilos para cada artículo */
+.game-item {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.2s ease;
+}
+/* Estilos para las imágenes de los artículos */
 .game-item img {
-  width: 15vw;
+  width: 10vw;
   height: 25vh;
 }
 
+.game-item:hover {
+  transform: scale(1.05);
+}
+
 /* Footer */
-.footer{
+.footer {
   position: fixed;
   color: white;
   background-color: #333;
@@ -78,6 +93,6 @@
   z-index: 1000;
 }
 
-.footer h4{
+.footer h4 {
   font-size: 1.1em;
 }

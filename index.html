@@ -4,67 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Games - Catálogo de Videojuegos</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-
-    <!-- Header Section -->
     <header id="header-container"></header>
+    <main class="container mt-4">
+        <!-- Sección de filtro por plataforma -->
+        <div class="mb-4">
+            <label for="filter-platform" class="form-label">Filtrar por Plataforma:</label>
+            <select id="filter-platform" class="form-select">
+                <option value="all">Todas</option>
+                <option value="PS4">PS4</option>
+                <option value="PS5">PS5</option>
+                <option value="Xbox">Xbox</option>
+                <!-- Agrega más opciones según las plataformas que manejes -->
+            </select>
+        </div>
 
-    <!-- Main Section -->
-    <main class="main-content">
-
+        <!-- Sección para mostrar juegos destacados -->
+        <section id="featured-games" class="mb-4">
+            <h2 class="mb-3">Juegos Destacados</h2>
+            <div id="game-container" class="row">
+                <!-- Los artículos de los juegos se cargarán aquí dinámicamente -->
+            </div>
+        </section>
 
         <!-- Botón para abrir el modal -->
-        <section class="d-flex justify-content-center my-4">
-            <button type="button" id="btnAddArt" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#videojuegoModal"></button>
-        </section>
-        <!-- Games Container -->
-        <div id="game-container"></div>
+        <button type="button" id="btnAddArt" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#videojuegoModal">
+            Agregar Artículo
+        </button>
 
-        <!-- Modal para agregar productos-->
-        <section class="modal fade" id="videojuegoModal" tabindex="-1" aria-labelledby="videojuegoModal"
+        <!-- Modal para agregar productos -->
+        <div class="modal fade" id="videojuegoModal" tabindex="-1" aria-labelledby="videojuegoModalLabel"
             aria-hidden="true">
-            <section class="modal-dialog">
-                <section class="modal-content">
-                    <article class="modal-header">
-                        <h5 class="modal-title" id="videojuegoModal">Agregar Artículo</h5>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="videojuegoModalLabel">Agregar Nuevo Juego</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </article>
-                    <article class="modal-body">
-                        <article class="controls-container">
-                            <input type="text" id="new-title" class="form-control my-2" placeholder="Título">
-                            <input type="text" id="new-description" class="form-control my-2" placeholder="Descripción">
-                            <input type="text" id="new-gender" class="form-control my-2" placeholder="Género o tipo">
-                            <input type="text" id="new-platform" class="form-control my-2"
-                                placeholder="Ej. PS5, Xbox, PC, Nintendo Switch">
-                            <input type="text" id="new-src" class="form-control my-2" placeholder="URL de la Imagen">
-                            <input type="text" id="new-price" class="form-control my-2" placeholder="Precio">
-                        </article>
-                    </article>
-                    <section class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="add-btn">Agregar Artículo</button>
-                    </section>
-                </section>
-            </section>
-        </section>
-
-        <section class="d-flex justify-content-center my-4">
-            <button type="button" class="btn btn-danger" id="remove-btn"></button>
-        </section>
-
+                    </div>
+                    <div class="modal-body">
+                        <form id="add-game-form">
+                            <div class="mb-3">
+                                <label for="new-title" class="form-label">Título</label>
+                                <input type="text" class="form-control" id="new-title" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new-description" class="form-label">Descripción</label>
+                                <textarea class="form-control" id="new-description" rows="3" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new-gender" class="form-label">Género</label>
+                                <input type="text" class="form-control" id="new-gender" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new-platform" class="form-label">Plataforma</label>
+                                <input type="text" class="form-control" id="new-platform" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new-src" class="form-label">URL Imagen</label>
+                                <input type="text" class="form-control" id="new-src" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="new-price" class="form-label">Precio</label>
+                                <input type="number" class="form-control" id="new-price" required>
+                            </div>
+                            <button type="button" id="add-btn" class="btn btn-primary">Agregar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
-
-    <!-- Footer Section -->
-    <footer class="footer" id="footer">
-
-    </footer>
-
-
+    <footer class="footer" id="footer"></footer>
     <script src="./assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

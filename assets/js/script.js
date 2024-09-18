@@ -1,41 +1,67 @@
 // Crear un array para las opciones del menú
-const menuItems = ['Home', 'Games', 'Contact'];
+const menuItems = [
+    { text: 'Home', url: 'index.html' },
+    { text: 'Games', url: 'games.html' },
+    { text: 'Contact', url: 'contact.html' },
+];
 
-// Crear navbar y agregar clase
-const navbar = document.createElement('nav');
-navbar.classList.add('nav-container');
+// Crear y agregar la navbar
+const createNavbar = () => {
+    const navbar = document.createElement('nav');
+    navbar.classList.add('navbar', 'navbar-expand-lg', 'navbar-light', 'bg-light');
 
-// Crear ul y agregar clase
-const ul = document.createElement('ul');
-ul.classList.add('ul-menu');
+    const ul = document.createElement('ul');
+    ul.classList.add('navbar-nav');
 
-// Crear li y a para cada opción del menú
-menuItems.forEach(item => {
-    const li = document.createElement('li');
-    li.classList.add('nav-items');
+    menuItems.forEach(item => {
+        const li = document.createElement('li');
+        li.classList.add('nav-item');
 
-    const a = document.createElement('a');
-    a.href = `${item.toLowerCase().replace('', '-')}`;
-    a.textContent = item;
+        const a = document.createElement('a');
+        a.classList.add('nav-link');
+        a.href = item.url;
+        a.textContent = item.text;
 
-    // Insertar a en li y li en ul
-    li.appendChild(a);
-    ul.appendChild(li);
-});
+        li.appendChild(a);
+        ul.appendChild(li);
+    });
 
-// Insertar ul en navbar y navbar en el contenedor del header
-navbar.appendChild(ul);
-document.getElementById('header-container').appendChild(navbar);
+    const togglerButton = document.createElement('button');
+    togglerButton.classList.add('navbar-toggler');
+    togglerButton.type = 'button';
+    togglerButton.setAttribute('data-bs-toggle', 'collapse');
+    togglerButton.setAttribute('data-bs-target', '#navbarNav');
+    togglerButton.setAttribute('aria-controls', 'navbarNav');
+    togglerButton.setAttribute('aria-expanded', 'false');
+    togglerButton.setAttribute('aria-label', 'Toggle navigation');
 
-//seleccionando el boton agregar articulo y agregarle el texto
+    const togglerIcon = document.createElement('span');
+    togglerIcon.classList.add('navbar-toggler-icon');
+    togglerButton.appendChild(togglerIcon);
+
+    const collapseDiv = document.createElement('div');
+    collapseDiv.classList.add('collapse', 'navbar-collapse');
+    collapseDiv.id = 'navbarNav';
+    collapseDiv.appendChild(ul);
+
+    navbar.appendChild(togglerButton);
+    navbar.appendChild(collapseDiv);
+
+    document.getElementById('header-container').appendChild(navbar);
+};
+
+// Inicializar la navbar
+createNavbar();
+
+// Seleccionando el botón de agregar artículo y agregando el texto
 const btnAddArt = document.getElementById("btnAddArt");
-btnAddArt.innerText = "Agregar Artículo"
+btnAddArt.innerText = "Agregar Artículo";
 
 // Array inicial de artículos o videojuegos
-let game = [
+let games = [
     {
         title: "Ghost of Tsushima",
-        description: "Voces: Español Textos: Español Peso del Juego : 60 GB Requerido en Consola : 120 GB instalacion : 1 Consola",
+        description: "Voces: Español Textos: Español Peso del Juego : 60 GB Requerido en Consola : 120 GB instalación : 1 Consola",
         gender: "Aventura de acción",
         platform: "PS4",
         src: "https://juegosdigitaleselsalvador.com/files/images/productos/1629507318-ghost-of-tsushima-directors-cut-ps4-pre-orden.jpg",
@@ -50,54 +76,42 @@ let game = [
         price: 50
     },
     {
-        title: "Ghost of Tsushima",
-        description: "Voces: Español Textos: Español Peso del Juego : 60 GB Requerido en Consola : 120 GB instalacion : 1 Consola",
-        gender: "Aventura de acción",
-        platform: "PS4",
-        src: "https://juegosdigitaleselsalvador.com/files/images/productos/1629507318-ghost-of-tsushima-directors-cut-ps4-pre-orden.jpg",
-        price: 80
+        title: "Star Wars Outlaws PS5",
+        description: "Voces:  Español  Textos: Español  Peso del Juego : 61 GB  Requerido en Consola:  120 GB  Instalación: 1 Consola",
+        gender: "Acción",
+        platform: "PS5",
+        src: "https://storegameselsalvador.com/files/images/productos/1725379761-star-wars-outlaws-ps5-0.webp",
+        price: 50
     }
 ];
 
-// Índice que rastrea el artículo actual (si es necesario)
-let currentIndex = 0;
-
-// Función para mostrar todos los artículos usando un ciclo for
-function Game({ game }) {
+// Función para mostrar todos los juegos
+function renderGames(games) {
     const gameContainer = document.getElementById("game-container");
-    gameContainer.innerHTML = ''; // Limpiar el contenedor antes de mostrar el contenido
+    gameContainer.innerHTML = '';
 
-    for (let i = 0; i < game.length; i++) {
-        const item = game[i];
-
-        // Crear el contenedor para cada elemento del artículo o juego
+    games.forEach(item => {
         const itemContainer = document.createElement('div');
         itemContainer.classList.add('game-item');
 
-        // Crear la Imagen
         const imageElement = document.createElement('img');
         imageElement.src = item.src;
 
-        // Crear el título
         const titleElement = document.createElement('h4');
         titleElement.textContent = item.title;
 
-        // Crear la descripción
         const descriptionElement = document.createElement('p');
         descriptionElement.textContent = item.description;
 
-
-        // Crear el genero del artículo
         const genderElement = document.createElement('h5');
         genderElement.textContent = item.gender;
 
-        // Crear la plataforma del artículo
-        const platformElement = document.createElement('spam');
+        const platformElement = document.createElement('span');
         platformElement.textContent = item.platform;
-        // Crear el precio del artículo
+
         const priceElement = document.createElement('h5');
         priceElement.textContent = "$" + item.price;
-        // Agregar los elementos al contenedor del ítem
+
         itemContainer.appendChild(imageElement);
         itemContainer.appendChild(titleElement);
         itemContainer.appendChild(descriptionElement);
@@ -105,35 +119,33 @@ function Game({ game }) {
         itemContainer.appendChild(platformElement);
         itemContainer.appendChild(priceElement);
 
-        // Agregar el ítem completo al contenedor principal de la tienda
         gameContainer.appendChild(itemContainer);
-    }
+    });
 }
 
 // Función para actualizar la tienda
 function updateGame() {
-    Game({ game });
+    renderGames(games);
 }
 
-// Función para agregar un nuevo artículo
+// Función para agregar un nuevo juego
 function addGame(newGame) {
-    game.push(newGame); // Agrega el nuevo artículo al array
-    updateGame(); // Actualiza la tienda para mostrar el nuevo contenido
+    games.push(newGame);
+    updateGame();
 }
 
-// Función para eliminar el artículo actual
+// Función para eliminar el juego actual
 function removeGame() {
-    if (game.length > 1) { // Asegura que haya al menos un artículo
-        game.splice(currentIndex, 1); // Elimina el artículo actual
-        currentIndex = currentIndex % game.length; // Ajusta el índice
-        updateGame(); // Actualiza el contenido de la tienda después de eliminar
+    if (games.length > 0) {
+        games.pop(); // Elimina el último juego
+        updateGame();
     } else {
-        alert('Debe haber al menos un artículo en la tienda.');
+        showMessage('Debe haber al menos un juego en la lista.');
     }
 }
 
-// Función de controles para agregar y eliminar artículos de la tienda
-function Controls({ addGame, removeGame }) {
+// Función de controles para agregar y eliminar juegos
+function initializeControls() {
     const newTitleInput = document.getElementById('new-title');
     const newDescriptionInput = document.getElementById('new-description');
     const newGenderInput = document.getElementById('new-gender');
@@ -143,7 +155,6 @@ function Controls({ addGame, removeGame }) {
     const addBtn = document.getElementById('add-btn');
     const removeBtn = document.getElementById('remove-btn');
 
-    // Agregamos un Event listener para el botón de agregar
     addBtn.addEventListener('click', () => {
         const newGame = {
             title: newTitleInput.value,
@@ -151,45 +162,44 @@ function Controls({ addGame, removeGame }) {
             gender: newGenderInput.value,
             platform: newPlatformInput.value,
             src: newSrcInput.value,
-            price: newPriceInput.value,
+            price: Number(newPriceInput.value),
         };
 
-        if (newGame.title && newGame.description && newGame.gender && newGame.platform && newGame.src && newGame.price) {
-            addGame(newGame); // Llama a la función para agregar el artículo
-            alert('Artículo agregado correctamente 🎉');
+        if (Object.values(newGame).every(value => value)) {
+            addGame(newGame);
+            showMessage('Juego agregado correctamente 🎉');
         } else {
-            alert('Por favor, completa todos los campos'); // Mensaje de error
+            showMessage('Por favor, completa todos los campos', 'danger');
         }
     });
-    //Agregamos el titulo al boton eliminar
-    removeBtn.innerText = "Eliminar ultimo Artículo"
-    // Agregamos un Event listener para el botón de eliminar
-    removeBtn.addEventListener('click', () => {
-        removeGame(); // Llama a la función para eliminar el artículo de la tienda
-        alert('Artículo eliminado con exito');
-    });
+
+    removeBtn.innerText = "Eliminar último Juego";
+    removeBtn.addEventListener('click', removeGame);
 }
 
 // Inicializa la tienda y los controles
 updateGame();
-Controls({ addGame, removeGame });
+initializeControls();
 
-
-//seleccionamos el add-btn para poder limpiar los campos a la hora de guardar el nuevo artículo.
-document.getElementById('add-btn').addEventListener('click', function () {
-    // Limpiar los inputs
-    document.getElementById('new-title').value = '';
-    document.getElementById('new-description').value = '';
-    document.getElementById('new-gender').value = '';
-    document.getElementById('new-platform').value = '';
-    document.getElementById('new-src').value = '';
-    document.getElementById('new-price').value = '';
-
-    // Cerrar el modal
-    let modal = bootstrap.Modal.getInstance(document.getElementById('videojuegoModal'));
+// Limpiar los campos del formulario y cerrar el modal
+document.getElementById('add-btn').addEventListener('click', () => {
+    document.querySelectorAll('#add-game-form input, #add-game-form textarea').forEach(input => input.value = '');
+    const modal = bootstrap.Modal.getInstance(document.getElementById('videojuegoModal'));
     modal.hide();
 });
 
-//footer
-const contenidoFooter = document.getElementById("footer");
-contenidoFooter.innerHTML = "<h4>Made by Hector Rodriguez and Hector Maldonado  - Copyright 2024</h4>"
+// Filtrar juegos por plataforma
+const filterPlatform = document.getElementById('filter-platform');
+filterPlatform.addEventListener('change', (e) => {
+    const platform = e.target.value;
+    const filteredGames = games.filter(item => platform === 'all' || item.platform === platform);
+    renderGames(filteredGames);
+});
+
+// Mostrar mensajes de retroalimentación
+function showMessage(message, type = 'success') {
+    const feedbackMsg = document.getElementById('feedback-msg');
+    feedbackMsg.textContent = message;
+    feedbackMsg.className = `alert alert-${type}`;
+    setTimeout(() => feedbackMsg.textContent = '', 3000);
+}

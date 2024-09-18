@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Videojuegos</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header id="header-container">
+
+    </header>
+
+    <!-- Main Section -->
+    <main class="main-content">
+
+        <select id="filter-platform" class="form-select my-2">
+            <option value="all">Todas las plataformas</option>
+            <option value="PS5">PS5</option>
+            <option value="PS4">PS4</option>
+            <option value="Xbox">Xbox</option>
+            <option value="Nintendo Switch">Nintendo Switch</option>
+            <option value="PC">PC</option>
+        </select>
+
+        <!-- Botón para abrir el modal -->
+        <section class="d-flex justify-content-center my-4">
+            <button type="button" id="btnAddArt" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#videojuegoModal">
+                Agregar Artículo
+            </button>
+        </section>
+
+        <!-- Games Container -->
+        <div id="game-container"></div>
+        <div id="feedback-msg" class="alert alert-success" style="display: none;"></div>
+
+        <!-- Modal para agregar productos-->
+        <section class="modal fade" id="videojuegoModal" tabindex="-1" aria-labelledby="videojuegoModalLabel"
+            aria-hidden="true">
+            <section class="modal-dialog">
+                <section class="modal-content">
+                    <article class="modal-header">
+                        <h5 class="modal-title" id="videojuegoModalLabel">Agregar Artículo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </article>
+                    <article class="modal-body">
+                        <article class="controls-container">
+                            <input type="text" id="new-title" class="form-control my-2" placeholder="Título">
+                            <input type="text" id="new-description" class="form-control my-2" placeholder="Descripción">
+                            <input type="text" id="new-gender" class="form-control my-2" placeholder="Género o tipo">
+                            <input type="text" id="new-platform" class="form-control my-2"
+                                placeholder="Ej. PS5, Xbox, PC, Nintendo Switch">
+                            <input type="text" id="new-src" class="form-control my-2" placeholder="URL de la Imagen">
+                            <input type="text" id="new-price" class="form-control my-2" placeholder="Precio">
+                        </article>
+                    </article>
+                    <section class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="add-btn">Agregar Artículo</button>
+                    </section>
+                </section>
+            </section>
+        </section>
+
+        <section class="d-flex justify-content-center my-4">
+            <button type="button" class="btn btn-danger" id="remove-btn">Eliminar último Artículo</button>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer" id="footer"></footer>
+
+    <script src="./assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
