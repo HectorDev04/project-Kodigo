@@ -50,18 +50,84 @@ const createNavbar = () => {
     document.getElementById('header-container').appendChild(navbar);
 };
 
+// Función para renderizar las noticias
+function renderNews(news) {
+    const newsContainer = document.getElementById('news-container');
+    newsContainer.innerHTML = '';
+
+    news.forEach(item => {
+        const itemContainer = document.createElement('div');
+        itemContainer.classList.add('col-md-4', 'mb-4');
+
+        const card = document.createElement('div');
+        card.classList.add('card', 'h-100');
+
+        const imageElement = document.createElement('img');
+        imageElement.src = item.image;
+        imageElement.classList.add('card-img-top');
+        card.appendChild(imageElement);
+
+        const cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+
+        const titleElement = document.createElement('h5');
+        titleElement.classList.add('card-title');
+        titleElement.textContent = item.title;
+
+        const descriptionElement = document.createElement('p');
+        descriptionElement.classList.add('card-text');
+        descriptionElement.textContent = item.description;
+
+        const dateElement = document.createElement('p');
+        dateElement.classList.add('card-text');
+        dateElement.textContent = `Fecha: ${item.date}`;
+
+        cardBody.appendChild(titleElement);
+        cardBody.appendChild(descriptionElement);
+        cardBody.appendChild(dateElement);
+
+        card.appendChild(cardBody);
+        itemContainer.appendChild(card);
+
+        newsContainer.appendChild(itemContainer);
+    });
+}
+
+// Datos de noticias
+const news = [
+    {
+        title: "Nuevo lanzamiento de PS5",
+        description: "Sony ha anunciado un nuevo modelo de PS5 con mejoras significativas en rendimiento.",
+        image: "https://blog.latam.playstation.com/tachyon/sites/3/2023/10/e08941a3d4b8ac23d60cbf6304e829e2e7a775b7.png",
+        date: "2024-09-18"
+    },
+    {
+        title: "Actualización de Xbox Series X",
+        description: "La última actualización de Xbox Series X incluye nuevas funciones de sistema y mejoras en la interfaz.",
+        image: "https://www.radioshackla.com/media/catalog/product/f/d/fd9cc3cc-3533-4eec-a87d-e6abcc77aae7.0e7d395789bb5e75eb627b80cfe78b13_svrheuzogcmhtvzt.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700",
+        date: "2024-09-17"
+    },
+    {
+        title: "Tendencias en videojuegos 2024",
+        description: "Un análisis de las principales tendencias en videojuegos para este año.",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwUmOUvwQzf0Zw_82dkfCo40ZO4whjzzp6sA&s",
+        date: "2024-09-16"
+    }
+];
+
 // Inicializar la navbar
 createNavbar();
 
-// Seleccionando el botón de agregar artículo y agregando el texto
-const btnAddArt = document.getElementById("btnAddArt");
-btnAddArt.innerText = "Agregar Artículo";
+// Renderizar las noticias solo en la página de inicio
+if (document.getElementById('news-container')) {
+    renderNews(news);
+}
 
-// Array inicial de artículos o videojuegos
-let games = [
+// Funciones para la página de juegos (games.html) 
+const games = [
     {
         title: "Ghost of Tsushima",
-        description: "Voces: Español Textos: Español Peso del Juego : 60 GB Requerido en Consola : 120 GB instalación : 1 Consola",
+        description: "Voces: Español Textos: Español Peso del Juego: 60 GB Requerido en Consola: 120 GB instalación: 1 Consola",
         gender: "Aventura de acción",
         platform: "PS4",
         src: "https://juegosdigitaleselsalvador.com/files/images/productos/1629507318-ghost-of-tsushima-directors-cut-ps4-pre-orden.jpg",
@@ -69,7 +135,7 @@ let games = [
     },
     {
         title: "Star Wars Outlaws PS5",
-        description: "Voces:  Español  Textos: Español  Peso del Juego : 61 GB  Requerido en Consola:  120 GB  Instalación: 1 Consola",
+        description: "Voces: Español Textos: Español Peso del Juego: 61 GB Requerido en Consola: 120 GB Instalación: 1 Consola",
         gender: "Acción",
         platform: "PS5",
         src: "https://storegameselsalvador.com/files/images/productos/1725379761-star-wars-outlaws-ps5-0.webp",
@@ -77,7 +143,7 @@ let games = [
     },
     {
         title: "Star Wars Outlaws PS5",
-        description: "Voces:  Español  Textos: Español  Peso del Juego : 61 GB  Requerido en Consola:  120 GB  Instalación: 1 Consola",
+        description: "Voces: Español Textos: Español Peso del Juego: 61 GB Requerido en Consola: 120 GB Instalación: 1 Consola",
         gender: "Acción",
         platform: "PS5",
         src: "https://storegameselsalvador.com/files/images/productos/1725379761-star-wars-outlaws-ps5-0.webp",
@@ -88,39 +154,56 @@ let games = [
 // Función para mostrar todos los juegos
 function renderGames(games) {
     const gameContainer = document.getElementById("game-container");
-    gameContainer.innerHTML = '';
+    if (gameContainer) {
+        gameContainer.innerHTML = '';
 
-    games.forEach(item => {
-        const itemContainer = document.createElement('div');
-        itemContainer.classList.add('game-item');
+        games.forEach(item => {
+            const itemContainer = document.createElement('div');
+            itemContainer.classList.add('col-md-4', 'mb-4');
 
-        const imageElement = document.createElement('img');
-        imageElement.src = item.src;
+            const card = document.createElement('div');
+            card.classList.add('card', 'h-100');
 
-        const titleElement = document.createElement('h4');
-        titleElement.textContent = item.title;
+            const imageElement = document.createElement('img');
+            imageElement.src = item.src;
+            imageElement.classList.add('card-img-top');
+            card.appendChild(imageElement);
 
-        const descriptionElement = document.createElement('p');
-        descriptionElement.textContent = item.description;
+            const cardBody = document.createElement('div');
+            cardBody.classList.add('card-body');
 
-        const genderElement = document.createElement('h5');
-        genderElement.textContent = item.gender;
+            const titleElement = document.createElement('h5');
+            titleElement.classList.add('card-title');
+            titleElement.textContent = item.title;
 
-        const platformElement = document.createElement('span');
-        platformElement.textContent = item.platform;
+            const descriptionElement = document.createElement('p');
+            descriptionElement.classList.add('card-text');
+            descriptionElement.textContent = item.description;
 
-        const priceElement = document.createElement('h5');
-        priceElement.textContent = "$" + item.price;
+            const genderElement = document.createElement('p');
+            genderElement.classList.add('card-text');
+            genderElement.textContent = `Género: ${item.gender}`;
 
-        itemContainer.appendChild(imageElement);
-        itemContainer.appendChild(titleElement);
-        itemContainer.appendChild(descriptionElement);
-        itemContainer.appendChild(genderElement);
-        itemContainer.appendChild(platformElement);
-        itemContainer.appendChild(priceElement);
+            const platformElement = document.createElement('p');
+            platformElement.classList.add('card-text');
+            platformElement.textContent = `Plataforma: ${item.platform}`;
 
-        gameContainer.appendChild(itemContainer);
-    });
+            const priceElement = document.createElement('p');
+            priceElement.classList.add('card-text');
+            priceElement.textContent = `Precio: $${item.price}`;
+
+            cardBody.appendChild(titleElement);
+            cardBody.appendChild(descriptionElement);
+            cardBody.appendChild(genderElement);
+            cardBody.appendChild(platformElement);
+            cardBody.appendChild(priceElement);
+
+            card.appendChild(cardBody);
+            itemContainer.appendChild(card);
+
+            gameContainer.appendChild(itemContainer);
+        });
+    }
 }
 
 // Función para actualizar la tienda
@@ -128,78 +211,17 @@ function updateGame() {
     renderGames(games);
 }
 
-// Función para agregar un nuevo juego
-function addGame(newGame) {
-    games.push(newGame);
+// Inicializa la tienda solo si estamos en la página de juegos
+if (document.getElementById('game-container')) {
     updateGame();
 }
 
-// Función para eliminar el juego actual
-function removeGame() {
-    if (games.length > 0) {
-        games.pop(); // Elimina el último juego
-        updateGame();
-    } else {
-        showMessage('Debe haber al menos un juego en la lista.');
-    }
-}
-
-// Función de controles para agregar y eliminar juegos
-function initializeControls() {
-    const newTitleInput = document.getElementById('new-title');
-    const newDescriptionInput = document.getElementById('new-description');
-    const newGenderInput = document.getElementById('new-gender');
-    const newPlatformInput = document.getElementById('new-platform');
-    const newSrcInput = document.getElementById('new-src');
-    const newPriceInput = document.getElementById('new-price');
-    const addBtn = document.getElementById('add-btn');
-    const removeBtn = document.getElementById('remove-btn');
-
-    addBtn.addEventListener('click', () => {
-        const newGame = {
-            title: newTitleInput.value,
-            description: newDescriptionInput.value,
-            gender: newGenderInput.value,
-            platform: newPlatformInput.value,
-            src: newSrcInput.value,
-            price: Number(newPriceInput.value),
-        };
-
-        if (Object.values(newGame).every(value => value)) {
-            addGame(newGame);
-            showMessage('Juego agregado correctamente 🎉');
-        } else {
-            showMessage('Por favor, completa todos los campos', 'danger');
-        }
-    });
-
-    removeBtn.innerText = "Eliminar último Juego";
-    removeBtn.addEventListener('click', removeGame);
-}
-
-// Inicializa la tienda y los controles
-updateGame();
-initializeControls();
-
-// Limpiar los campos del formulario y cerrar el modal
-document.getElementById('add-btn').addEventListener('click', () => {
-    document.querySelectorAll('#add-game-form input, #add-game-form textarea').forEach(input => input.value = '');
-    const modal = bootstrap.Modal.getInstance(document.getElementById('videojuegoModal'));
-    modal.hide();
-});
-
-// Filtrar juegos por plataforma
-const filterPlatform = document.getElementById('filter-platform');
-filterPlatform.addEventListener('change', (e) => {
-    const platform = e.target.value;
-    const filteredGames = games.filter(item => platform === 'all' || item.platform === platform);
-    renderGames(filteredGames);
-});
-
-// Mostrar mensajes de retroalimentación
+// Función para mostrar mensajes de retroalimentación
 function showMessage(message, type = 'success') {
     const feedbackMsg = document.getElementById('feedback-msg');
-    feedbackMsg.textContent = message;
-    feedbackMsg.className = `alert alert-${type}`;
-    setTimeout(() => feedbackMsg.textContent = '', 3000);
+    if (feedbackMsg) {
+        feedbackMsg.textContent = message;
+        feedbackMsg.className = `alert alert-${type}`;
+        setTimeout(() => feedbackMsg.textContent = '', 3000);
+    }
 }
