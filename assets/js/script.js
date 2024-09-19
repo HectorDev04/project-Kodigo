@@ -151,6 +151,9 @@ const games = [
     }
 ];
 
+// Índice que rastrea el artículo actual (si es necesario)
+let currentIndex = 0;
+
 // Función para mostrar todos los juegos
 function renderGames(games) {
     const gameContainer = document.getElementById("game-container");
@@ -225,3 +228,91 @@ function showMessage(message, type = 'success') {
         setTimeout(() => feedbackMsg.textContent = '', 3000);
     }
 }
+
+
+
+// Función para agregar un nuevo artículo
+function addGame(newGame) {
+    games.push(newGame); // Agrega el nuevo artículo al array
+    updateGame(); // Actualiza la tienda para mostrar el nuevo contenido
+}
+
+// Función para eliminar el artículo actual
+function removeGame() {
+    if (games.length > 1) { // Asegura que haya al menos un artículo
+        games.splice(currentIndex, 1); // Elimina el ultimo artículo de la lista 
+        currentIndex = currentIndex % games.length; // Ajusta el índice
+        updateGame(); // Actualiza el contenido de la tienda después de eliminar
+    } else {
+        alert('Debe haber al menos un artículo en la tienda.');
+    }
+}
+
+// Función de controles para agregar y eliminar artículos de la tienda
+function Controls({ addGame, removeGame }) {
+    const newTitleInput = document.getElementById('new-title');
+    const newDescriptionInput = document.getElementById('new-description');
+    const newGenderInput = document.getElementById('new-gender');
+    const newPlatformInput = document.getElementById('new-platform');
+    const newSrcInput = document.getElementById('new-src');
+    const newPriceInput = document.getElementById('new-price');
+    const addBtn = document.getElementById('add-btn');
+    const removeBtn = document.getElementById('remove-btn');
+
+    // Agregamos un Event listener para el botón de agregar
+    addBtn.addEventListener('click', () => {
+        const newGame = {
+            title: newTitleInput.value,
+            description: newDescriptionInput.value,
+            gender: newGenderInput.value,
+            platform: newPlatformInput.value,
+            src: newSrcInput.value,
+            price: newPriceInput.value,
+        };
+
+        if (newGame.title && newGame.description && newGame.gender && newGame.platform && newGame.src && newGame.price) {
+            addGame(newGame); // Llama a la función para agregar el artículo
+            alert('Artículo agregado correctamente 🎉');
+        } else {
+            alert('Por favor, completa todos los campos'); // Mensaje de error
+        }
+    });
+
+    //Agregamos el titulo al boton eliminar
+    removeBtn.innerText = "Eliminar ultimo Artículo"
+    // Agregamos un Event listener para el botón de eliminar
+    removeBtn.addEventListener('click', () => {
+        removeGame(); // Llama a la función para eliminar el artículo de la tienda
+        alert('Artículo eliminado con exito');
+    });
+}
+
+// Inicializa la tienda y los controles
+updateGame();
+Controls({ addGame, removeGame });
+
+
+//seleccionamos el add-btn para poder limpiar los campos a la hora de guardar el nuevo artículo.
+document.getElementById('add-btn').addEventListener('click', function () {
+    // Limpiar los inputs
+    document.getElementById('new-title').value = '';
+    document.getElementById('new-description').value = '';
+    document.getElementById('new-gender').value = '';
+    document.getElementById('new-platform').value = '';
+    document.getElementById('new-src').value = '';
+    document.getElementById('new-price').value = '';
+    // Cerrar el modal
+    let modal = bootstrap.Modal.getInstance(document.getElementById('videojuegoModal'));
+    modal.hide();
+});
+
+// Obtener el modal
+const cartModalElement = document.getElementById('cartModal');
+
+
+
+
+//footer
+const contenidoFooter = document.getElementById("footer");
+contenidoFooter.innerHTML = "<h4>Made by Hector Rodriguez and Hector Maldonado  - Copyright 2024</h4>"
+

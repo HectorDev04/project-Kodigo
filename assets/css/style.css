@@ -5,8 +5,8 @@
 }
 
 /* Estilos para el contenedor de la navbar */
-.nav-container {
-  background-color: #333;
+.header-container {
+  background-color: #333 !important ;
   padding: 10px 20px;
   display: flex;
   justify-content: center;
@@ -89,8 +89,7 @@
   bottom: 0;
   width: 100%;
   text-align: center;
-  padding: 20px 0;
-  z-index: 1000;
+  
 }
 
 .footer h4 {
