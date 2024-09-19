@@ -6,7 +6,7 @@
 
 /* Estilos para el contenedor de la navbar */
 .header-container {
-  background-color: #333 !important ;
+  background-color: #333;
   padding: 10px 20px;
   display: flex;
   justify-content: center;
@@ -57,10 +57,11 @@
 
 /* Estilos para el contenedor de los artículos */
 #game-container {
-  width: 65vw;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr 3fr;
+  gap: 2em;
+  padding: 2em;
+  align-items: center;
 }
 
 /* Estilos para cada artículo */
@@ -82,16 +83,26 @@
 
 /* Footer */
 .footer {
-  position: fixed;
   color: white;
   background-color: #333;
-  left: 0;
+  text-align: center;
   bottom: 0;
   width: 100%;
-  text-align: center;
-  
+  padding: 1.5em;
+    
 }
 
 .footer h4 {
   font-size: 1.1em;
+}
+
+
+
+/*Medias querys (estilos para tables 820 px responsive)*/
+@media (min-width: 769px) and (max-width: 1024px) {
+
+
+
+  
+
 }
