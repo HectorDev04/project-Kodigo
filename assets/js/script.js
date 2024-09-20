@@ -1,99 +1,48 @@
-// Crear un array para las opciones del menú
-const menuItems = [
-    { text: 'Home', url: 'index.html' },
-    { text: 'Games', url: 'games.html' },
-    { text: 'Contact', url: 'contact.html' },
-];
-
-// Crear y agregar la navbar
+// Navbar dinámica
 const createNavbar = () => {
-    const navbar = document.createElement('nav');
-    navbar.classList.add('navbar', 'navbar-expand-lg', 'navbar-light', 'bg-light');
-
-    const ul = document.createElement('ul');
-    ul.classList.add('navbar-nav');
-
-    menuItems.forEach(item => {
-        const li = document.createElement('li');
-        li.classList.add('nav-item');
-
-        const a = document.createElement('a');
-        a.classList.add('nav-link');
-        a.href = item.url;
-        a.textContent = item.text;
-
-        li.appendChild(a);
-        ul.appendChild(li);
-    });
-
-    const togglerButton = document.createElement('button');
-    togglerButton.classList.add('navbar-toggler');
-    togglerButton.type = 'button';
-    togglerButton.setAttribute('data-bs-toggle', 'collapse');
-    togglerButton.setAttribute('data-bs-target', '#navbarNav');
-    togglerButton.setAttribute('aria-controls', 'navbarNav');
-    togglerButton.setAttribute('aria-expanded', 'false');
-    togglerButton.setAttribute('aria-label', 'Toggle navigation');
-
-    const togglerIcon = document.createElement('span');
-    togglerIcon.classList.add('navbar-toggler-icon');
-    togglerButton.appendChild(togglerIcon);
-
-    const collapseDiv = document.createElement('div');
-    collapseDiv.classList.add('collapse', 'navbar-collapse');
-    collapseDiv.id = 'navbarNav';
-    collapseDiv.appendChild(ul);
-
-    navbar.appendChild(togglerButton);
-    navbar.appendChild(collapseDiv);
-
-    document.getElementById('header-container').appendChild(navbar);
+    const navbar = `
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">DOM de Videojuegos</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="games.html">Games</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    `;
+    document.getElementById('header-container').innerHTML = navbar;
 };
 
-// Función para renderizar las noticias
+// Noticias (Index Page)
 function renderNews(news) {
     const newsContainer = document.getElementById('news-container');
+    if (!newsContainer) return; // Evitar errores si el contenedor no está presente
     newsContainer.innerHTML = '';
 
     news.forEach(item => {
-        const itemContainer = document.createElement('div');
-        itemContainer.classList.add('col-md-4', 'mb-4');
-
-        const card = document.createElement('div');
-        card.classList.add('card', 'h-100');
-
-        const imageElement = document.createElement('img');
-        imageElement.src = item.image;
-        imageElement.classList.add('card-img-top');
-        card.appendChild(imageElement);
-
-        const cardBody = document.createElement('div');
-        cardBody.classList.add('card-body');
-
-        const titleElement = document.createElement('h5');
-        titleElement.classList.add('card-title');
-        titleElement.textContent = item.title;
-
-        const descriptionElement = document.createElement('p');
-        descriptionElement.classList.add('card-text');
-        descriptionElement.textContent = item.description;
-
-        const dateElement = document.createElement('p');
-        dateElement.classList.add('card-text');
-        dateElement.textContent = `Fecha: ${item.date}`;
-
-        cardBody.appendChild(titleElement);
-        cardBody.appendChild(descriptionElement);
-        cardBody.appendChild(dateElement);
-
-        card.appendChild(cardBody);
-        itemContainer.appendChild(card);
-
-        newsContainer.appendChild(itemContainer);
+        const card = `
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="${item.image}" class="card-img-top" alt="${item.title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.title}</h5>
+                        <p class="card-text">${item.description}</p>
+                        <p class="card-text"><small class="text-muted">Fecha: ${item.date}</small></p>
+                    </div>
+                </div>
+            </div>`;
+        newsContainer.innerHTML += card;
     });
 }
 
-// Datos de noticias
+// Datos de noticias para la página de inicio
 const news = [
     {
         title: "Nuevo lanzamiento de PS5",
@@ -115,35 +64,19 @@ const news = [
     }
 ];
 
-// Inicializar la navbar
-createNavbar();
-
-// Renderizar las noticias solo en la página de inicio
-if (document.getElementById('news-container')) {
-    renderNews(news);
-}
-
-// Funciones para la página de juegos (games.html) 
+// Catálogo de Videojuegos (Games Page)
 const games = [
     {
         title: "Ghost of Tsushima",
-        description: "Voces: Español Textos: Español Peso del Juego: 60 GB Requerido en Consola: 120 GB instalación: 1 Consola",
-        gender: "Aventura de acción",
+        description: "Aventura épica en un mundo abierto con combate y exploración en PS4.",
+        gender: "Aventura",
         platform: "PS4",
         src: "https://juegosdigitaleselsalvador.com/files/images/productos/1629507318-ghost-of-tsushima-directors-cut-ps4-pre-orden.jpg",
         price: 80
     },
     {
-        title: "Star Wars Outlaws PS5",
-        description: "Voces: Español Textos: Español Peso del Juego: 61 GB Requerido en Consola: 120 GB Instalación: 1 Consola",
-        gender: "Acción",
-        platform: "PS5",
-        src: "https://storegameselsalvador.com/files/images/productos/1725379761-star-wars-outlaws-ps5-0.webp",
-        price: 50
-    },
-    {
-        title: "Star Wars Outlaws PS5",
-        description: "Voces: Español Textos: Español Peso del Juego: 61 GB Requerido en Consola: 120 GB Instalación: 1 Consola",
+        title: "Star Wars Outlaws",
+        description: "Acción y aventura en el universo de Star Wars, disponible en PS5.",
         gender: "Acción",
         platform: "PS5",
         src: "https://storegameselsalvador.com/files/images/productos/1725379761-star-wars-outlaws-ps5-0.webp",
@@ -151,77 +84,70 @@ const games = [
     }
 ];
 
-// Función para mostrar todos los juegos
+// Función para renderizar los juegos en la página de catálogo
 function renderGames(games) {
-    const gameContainer = document.getElementById("game-container");
-    if (gameContainer) {
-        gameContainer.innerHTML = '';
+    const gameContainer = document.getElementById('game-container');
+    if (!gameContainer) return; // Evitar errores si el contenedor no está presente
+    gameContainer.innerHTML = '';
 
-        games.forEach(item => {
-            const itemContainer = document.createElement('div');
-            itemContainer.classList.add('col-md-4', 'mb-4');
-
-            const card = document.createElement('div');
-            card.classList.add('card', 'h-100');
-
-            const imageElement = document.createElement('img');
-            imageElement.src = item.src;
-            imageElement.classList.add('card-img-top');
-            card.appendChild(imageElement);
-
-            const cardBody = document.createElement('div');
-            cardBody.classList.add('card-body');
-
-            const titleElement = document.createElement('h5');
-            titleElement.classList.add('card-title');
-            titleElement.textContent = item.title;
-
-            const descriptionElement = document.createElement('p');
-            descriptionElement.classList.add('card-text');
-            descriptionElement.textContent = item.description;
-
-            const genderElement = document.createElement('p');
-            genderElement.classList.add('card-text');
-            genderElement.textContent = `Género: ${item.gender}`;
-
-            const platformElement = document.createElement('p');
-            platformElement.classList.add('card-text');
-            platformElement.textContent = `Plataforma: ${item.platform}`;
-
-            const priceElement = document.createElement('p');
-            priceElement.classList.add('card-text');
-            priceElement.textContent = `Precio: $${item.price}`;
-
-            cardBody.appendChild(titleElement);
-            cardBody.appendChild(descriptionElement);
-            cardBody.appendChild(genderElement);
-            cardBody.appendChild(platformElement);
-            cardBody.appendChild(priceElement);
-
-            card.appendChild(cardBody);
-            itemContainer.appendChild(card);
-
-            gameContainer.appendChild(itemContainer);
-        });
-    }
+    games.forEach(item => {
+        const card = `
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <img src="${item.src}" class="card-img-top" alt="${item.title}">
+                    <div class="card-body">
+                        <h5 class="card-title">${item.title}</h5>
+                        <p class="card-text">${item.description}</p>
+                        <p class="card-text"><strong>Género:</strong> ${item.gender}</p>
+                        <p class="card-text"><strong>Plataforma:</strong> ${item.platform}</p>
+                        <p class="card-text"><strong>Precio:</strong> $${item.price}</p>
+                    </div>
+                </div>
+            </div>`;
+        gameContainer.innerHTML += card;
+    });
 }
 
-// Función para actualizar la tienda
-function updateGame() {
+// Función para agregar un nuevo juego
+document.getElementById('add-btn')?.addEventListener('click', () => {
+    const title = document.getElementById('new-title').value;
+    const description = document.getElementById('new-description').value;
+    const gender = document.getElementById('new-gender').value;
+    const platform = document.getElementById('new-platform').value;
+    const src = document.getElementById('new-src').value;
+    const price = document.getElementById('new-price').value;
+
+    const newGame = {
+        title,
+        description,
+        gender,
+        platform,
+        src,
+        price: parseFloat(price)
+    };
+
+    games.push(newGame);
     renderGames(games);
-}
 
-// Inicializa la tienda solo si estamos en la página de juegos
+    // Cerrar el modal
+    const modalElement = document.getElementById('videojuegoModal');
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    modal.hide();
+});
+
+// Función para eliminar el último juego
+document.getElementById('remove-btn')?.addEventListener('click', () => {
+    games.pop();
+    renderGames(games);
+});
+
+// Inicializar la navbar y los contenidos específicos de cada página
+createNavbar();
+
+// Renderizar contenido según la página en la que estamos
+if (document.getElementById('news-container')) {
+    renderNews(news); // Renderizar noticias en index.html
+}
 if (document.getElementById('game-container')) {
-    updateGame();
-}
-
-// Función para mostrar mensajes de retroalimentación
-function showMessage(message, type = 'success') {
-    const feedbackMsg = document.getElementById('feedback-msg');
-    if (feedbackMsg) {
-        feedbackMsg.textContent = message;
-        feedbackMsg.className = `alert alert-${type}`;
-        setTimeout(() => feedbackMsg.textContent = '', 3000);
-    }
+    renderGames(games); // Renderizar juegos en games.html
 }

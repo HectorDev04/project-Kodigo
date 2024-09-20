@@ -5,79 +5,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Videojuegos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Navbar generada dinámicamente -->
+    <header id="header-container"></header>
 
-    <!-- Header Section -->
-    <header id="header-container">
+    <main class="container my-5">
+        <h2 class="text-center mb-4">Catálogo de Videojuegos</h2>
 
-    </header>
+        <!-- Filtro de plataformas -->
+        <div class="row mb-4">
+            <div class="col-md-4 offset-md-4">
+                <select id="filter-platform" class="form-select">
+                    <option value="all">Todas las plataformas</option>
+                    <option value="PS5">PS5</option>
+                    <option value="PS4">PS4</option>
+                    <option value="Xbox">Xbox</option>
+                    <option value="Nintendo Switch">Nintendo Switch</option>
+                    <option value="PC">PC</option>
+                </select>
+            </div>
+        </div>
 
-    <!-- Main Section -->
-    <main class="main-content">
+        <!-- Botón para agregar juegos -->
+        <div class="row mb-4 text-center">
+            <div class="col">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#videojuegoModal">
+                    Agregar Juego
+                </button>
+            </div>
+        </div>
 
-        <select id="filter-platform" class="form-select my-2">
-            <option value="all">Todas las plataformas</option>
-            <option value="PS5">PS5</option>
-            <option value="PS4">PS4</option>
-            <option value="Xbox">Xbox</option>
-            <option value="Nintendo Switch">Nintendo Switch</option>
-            <option value="PC">PC</option>
-        </select>
+        <!-- Contenedor de juegos -->
+        <div id="game-container" class="row g-4"></div>
 
-        <!-- Botón para abrir el modal -->
-        <section class="d-flex justify-content-center my-4">
-            <button type="button" id="btnAddArt" class="btn btn-primary" data-bs-toggle="modal"
-                data-bs-target="#videojuegoModal">
-                Agregar Artículo
-            </button>
-        </section>
-
-        <!-- Games Container -->
-        <div id="game-container"></div>
-        <div id="feedback-msg" class="alert alert-success" style="display: none;"></div>
-
-        <!-- Modal para agregar productos-->
-        <section class="modal fade" id="videojuegoModal" tabindex="-1" aria-labelledby="videojuegoModalLabel"
+        <!-- Modal para agregar productos -->
+        <div class="modal fade" id="videojuegoModal" tabindex="-1" aria-labelledby="videojuegoModalLabel"
             aria-hidden="true">
-            <section class="modal-dialog">
-                <section class="modal-content">
-                    <article class="modal-header">
-                        <h5 class="modal-title" id="videojuegoModalLabel">Agregar Artículo</h5>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="videojuegoModalLabel">Agregar Juego</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </article>
-                    <article class="modal-body">
-                        <article class="controls-container">
-                            <input type="text" id="new-title" class="form-control my-2" placeholder="Título">
-                            <input type="text" id="new-description" class="form-control my-2" placeholder="Descripción">
-                            <input type="text" id="new-gender" class="form-control my-2" placeholder="Género o tipo">
-                            <input type="text" id="new-platform" class="form-control my-2"
-                                placeholder="Ej. PS5, Xbox, PC, Nintendo Switch">
-                            <input type="text" id="new-src" class="form-control my-2" placeholder="URL de la Imagen">
-                            <input type="text" id="new-price" class="form-control my-2" placeholder="Precio">
-                        </article>
-                    </article>
-                    <section class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="add-btn">Agregar Artículo</button>
-                    </section>
-                </section>
-            </section>
-        </section>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <input type="text" id="new-title" class="form-control" placeholder="Título del juego">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="new-description" class="form-control" placeholder="Descripción">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="new-gender" class="form-control" placeholder="Género">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="new-platform" class="form-control"
+                                placeholder="Plataforma (PS5, Xbox, PC)">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="new-src" class="form-control" placeholder="URL de la Imagen">
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" id="new-price" class="form-control" placeholder="Precio">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="add-btn">Agregar Juego</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <section class="d-flex justify-content-center my-4">
-            <button type="button" class="btn btn-danger" id="remove-btn">Eliminar último Artículo</button>
-        </section>
+        <!-- Botón para eliminar el último juego -->
+        <div class="row my-4 text-center">
+            <div class="col">
+                <button type="button" class="btn btn-danger" id="remove-btn">Eliminar Último Juego</button>
+            </div>
+        </div>
 
     </main>
 
-    <!-- Footer Section -->
-    <footer class="footer" id="footer"></footer>
+    <!-- Footer generado dinámicamente -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 Catálogo de Videojuegos - Todos los derechos reservados</p>
+        </div>
+    </footer>
 
-    <script src="./assets/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
